@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	<title>Explore Space With Us</title>
+</head>
+
+<body>
+	<div class="container ">
+		<div class="row">
+			<div class="col-md-6 m-auto">
+				<h1 class="my-4">Lets Explore Space</h1>
+				<form action="/" method="post" >
+					<div class="form-group">
+						<label for="rover">Choose Rover</label>
+						<select id="rover" name="rover" class="form-control" required>
+							<option value="curiosity">Curiosity</option>
+							<option value="opportunity"> Opportunity</option>
+							<option value="spirit">Spirit</option>
+							<option value="perseverance">Perseverance</option>
+						</select>
+					</div>
+
+					<div class="form-group">
+						<label for="camera">Camera</label>
+						<select id="camera" name="camera" class="form-control" required>
+						</select>
+					</div>
+
+					<div class="form-group">
+						<label for="sol">Sol (Day on Mars)</label>
+						<input class="ml-5 p-2" type="text" name="sol" placeholder="Try between 0 - 100" required>
+					</div>
+
+					<input type="submit" value="Explore" class="btn btn-primary btn-block">
+				</form>
+			</div>
+		</div>
+	</div>
+
+
+	<div class="photo-grid">
+		<div class="container mt-5">
+			<div class="row people">
+				<% for(var i=0; i < data.length; i++) { %>
+				<div class="col-md-4 col-lg-3 item mt-2 mb-2">
+					<img src="<%= data[i].img_src %>" style="width:90%; height=90%"/>
+				</div>
+				<% } %>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript">
+		const roverSelector = document.getElementById('rover');
+		const cameraSelector = document.getElementById('camera');
+
+		roverSelector.addEventListener('click', function appOpt() {
+			let x = roverSelector.value;
+
+			if (x === "curiosity") {
+				items = ['FHAZ', 'RHAZ', 'MAST', 'CHEMCAM', 'MAHLI', 'MARDI', 'NAVCAM'];
+			}
+
+			if (x === "opportunity") {
+				items = ['FHAZ', 'RHAZ', 'NAVCAM', 'PANCAM', 'MINITES'];
+			}
+
+			if (x === "spirit") {
+				items = ['FHAZ', 'RHAZ', 'NAVCAM', 'PANCAM', 'MINITES'];
+			}
+
+			if (x === "perseverance") {
+				items = ['EDL_RUCAM', 'EDL_RDCAM', 'EDL_DDCAM', 'EDL_PUCAM1', 'EDL_PUCAM2', 'NAVCAM_LEFT', 'NAVCAM_RIGHT', 'MCZ_RIGHT', 'MCZ_LEFT', 'FRONT_HAZCAM_LEFT_A', 'FRONT_HAZCAM_RIGHT_A', 'REAR_HAZCAM_LEFT', 'REAR_HAZCAM_RIGHT', 'SKYCAM', 'SHERLOC_WATSON']
+			}
+
+			var str = ""
+			for (var item of items) {
+				str += "<option value=\""+ item + "\"" +">" + item + "</option>"
+			}
+			cameraSelector.innerHTML = str;
+		});
+
+	</script>
+</body>
+</html>
